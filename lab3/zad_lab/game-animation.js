@@ -16,14 +16,59 @@ class GameAnimation extends HTMLElement {
             "neko/spanie2.gif",
             "neko/pobudka.gif"
         ];
+        this.n = Math.random() * 4 + 2;
 
     }
 
     setInterv() {
         this.intervalID = setInterval(() => {
-            this.current = this.current + 1;
-            //console.log(this.timeout);
+            let newCurrentVal = 0;
+            switch (parseInt(this.current)) {
+                case 0:
+                    this.n--;
+                    newCurrentVal = 1;
+                    break;
+                case 1:
+                    if (this.n > 0) newCurrentVal = 0;
+                    else newCurrentVal = 2;
+                    break;
+                case 2:
+                    this.n = Math.random() * 4 + 2;
+                    newCurrentVal = 3;
+                    break;
+                case 3:
+                    newCurrentVal = 4;
+                    break;
+                case 4:
+                    this.n--;
+                    newCurrentVal = 5;
+                    break;
+                case 5:
+                    if (this.n > 0) newCurrentVal = 4;
+                    else {
+                        this.n = Math.random() * 4 + 2;
+                        newCurrentVal = 6;
+                    }
+                    break;
+                case 6:
+                    this.n--;
+                    newCurrentVal = 7;
+                    break;
+                case 7:
+                    if (this.n > 0) newCurrentVal = 6;
+                    else newCurrentVal = 8;
+                    break;
+                case 8:
+                    this.n = Math.random() * 4 + 2;
+                    newCurrentVal = 0;
+                    break;
+            }
+            this.current = newCurrentVal;
         }, parseInt(this.timeout));
+    }
+
+    stop() {
+        clearInterval(this.intervalID);
     }
 
 
@@ -53,11 +98,15 @@ class GameAnimation extends HTMLElement {
     }
 
     static get observedAttributes() {
-        return ['current'];
+        return ['current', 'timeout'];
     }
 
     attributeChangedCallback(prop, oldVal, newVal) {
         if (prop === 'current') this.render();
+        if (prop === 'timeout') {
+            clearInterval(this.intervalID);
+            this.setInterv();
+        }
     }
 
     connectedCallback() {
@@ -93,8 +142,39 @@ class GameAnimation extends HTMLElement {
         `;
 
         this.root.querySelector('img').addEventListener('click', () => {
-            console.log("click inside");
-            this.points = 10;
+            let pointsGained = 0;
+            switch (parseInt(this.current)) {
+                case 0:
+                    pointsGained = 1;
+                    break;
+                case 1:
+                    pointsGained = 1;
+                    break;
+                case 2:
+                    pointsGained = 10;
+                    break;
+                case 3:
+                    pointsGained = 10;
+                    break;
+                case 4:
+                    pointsGained = -1;
+                    break;
+                case 5:
+                    pointsGained = -1;
+                    break;
+                case 6:
+                    pointsGained = -2;
+                    break;
+                case 7:
+                    pointsGained = -2;
+                    break;
+                case 8:
+                    pointsGained = 10;
+                    break;
+
+            }
+            this.points = parseInt(this.points) + pointsGained;
+            this.timeout -= pointsGained;
         });
     }
 
