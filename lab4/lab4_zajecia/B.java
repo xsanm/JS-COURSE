@@ -1,0 +1,6 @@
+public class B extends C {
+...
+} 
+  class C {
+...
+}
