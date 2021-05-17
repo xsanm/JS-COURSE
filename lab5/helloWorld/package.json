@@ -1,12 +1,21 @@
 {
-  "name": "helloWorld",
+  "name": "helloworld",
   "version": "1.0.0",
-  "description": "",
+  "description": "The \"Hello world\" application",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx mocha",
+    "start": "node app2.js",
+    "app1": "echo 'Uruchamiam aplikację nr 1'; node app1.js",
+    "app2" : "echo 'Uruchamiam aplikację nr 2'; node app2.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "xsan",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "package.json": "^2.0.1",
+    "pug": "^3.0.2",
+    "yarn": "^1.22.10"
+  }
 }
