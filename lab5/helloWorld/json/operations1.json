@@ -1,0 +1,29 @@
+{
+    "Operations": [
+        {
+            "operation": "+",
+            "x": 1,
+            "y": 2
+        },
+        {
+            "operation": "*",
+            "x": 3,
+            "y": 6
+        },
+        {
+            "operation": "-",
+            "x": 7,
+            "y": 5
+        },
+        {
+            "operation": "+",
+            "x": 1,
+            "y": 1
+        },
+        {
+            "operation": "/",
+            "x": 20,
+            "y": 5
+        }
+    ]
+}
